@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ToDoApp</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js"></script>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <h1 class="logo">ToDoApp</h1>
+
+    <div class="header-buttons">
+      <button id="theme-btn" class="btn btn-light">Dark mode</button>
+
+      <!-- Google login (step 8) -->
+      <button id="sign-in-btn" class="btn">Sign in with Google</button>
+      <div id="user-box" class="user-box hide">
+        <img id="user-photo" src="" alt="User photo">
+        <span id="user-name"></span>
+        <button id="sign-out-btn" class="btn btn-light">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- SIDEBAR: the lists -->
+    <aside class="sidebar">
+      <h2>My Lists</h2>
+
+      <!-- JS adds the lists here, like this:
+        <li><button class="active" data-id="all">All tasks</button></li>
+        <li><button data-id="LIST_ID">Work</button></li>
+      -->
+      <ul id="lists" class="lists"></ul>
+
+      <form id="list-form" class="list-form" novalidate>
+        <input type="text" id="list-name" placeholder="New list" required>
+        <button type="submit" class="btn">Add</button>
+      </form>
+      <p id="list-error" class="error"></p>
+    </aside>
+
+    <section class="content">
+
+      <!-- ADD / EDIT FORM -->
+      <form id="task-form" class="box" novalidate>
+        <h2 id="form-title">Add a task</h2>
+
+        <label for="task-title">Title</label>
+        <input type="text" id="task-title" required>
+        <p id="title-error" class="error"></p>
+
+        <label for="task-details">Details</label>
+        <textarea id="task-details" rows="2"></textarea>
+
+        <div class="form-row">
+          <div>
+            <label for="task-list">List</label>
+            <!-- JS adds the options: <option value="LIST_ID">Work</option> -->
+            <select id="task-list" required></select>
+            <p id="task-list-error" class="error"></p>
+          </div>
+          <div>
+            <label for="task-due">Due date</label>
+            <input type="date" id="task-due">
+            <p id="due-error" class="error"></p>
+          </div>
+          <div>
+            <label for="task-priority">Priority</label>
+            <select id="task-priority">
+              <option value="high">High</option>
+              <option value="medium" selected>Medium</option>
+              <option value="low">Low</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" id="submit-btn" class="btn">Add task</button>
+        <button type="button" id="cancel-btn" class="btn btn-light hide">Cancel</button>
+      </form>
+
+      <!-- SEARCH, FILTERS, SORT -->
+      <div class="toolbar">
+        <div>
+          <label for="search">Search</label>
+          <input type="text" id="search" placeholder="Search tasks">
+        </div>
+        <div>
+          <label for="filter-priority">Priority</label>
+          <select id="filter-priority">
+            <option value="all">All</option>
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+          </select>
+        </div>
+        <div>
+          <label for="filter-date">Due date</label>
+          <select id="filter-date">
+            <option value="all">All</option>
+            <option value="today">Today</option>
+            <option value="overdue">Overdue</option>
+            <option value="upcoming">Upcoming</option>
+            <option value="none">No date</option>
+          </select>
+        </div>
+        <div>
+          <label for="sort">Sort by</label>
+          <select id="sort">
+            <option value="newest">Newest</option>
+            <option value="due">Due date</option>
+            <option value="priority">Priority</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- TASKS / TRASH + PROGRESS -->
+      <div class="view-bar">
+        <div class="tabs">
+          <button class="tab active" data-view="tasks">Tasks</button>
+          <button class="tab" data-view="trash">Trash</button>
+        </div>
+
+        <div class="progress">
+          <span id="progress-text">0 of 0 done</span>
+          <div class="progress-bar">
+            <div id="progress-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- For "Loading...", "No tasks yet" and errors -->
+      <p id="message" class="message"></p>
+
+      <!-- JS adds the cards here, like this:
+        <article class="task high" data-id="TASK_ID">
+          <input type="checkbox" class="task-check">
+          <div class="task-body">
+            <h3>Buy a birthday gift</h3>
+            <p>For Sami, before Friday</p>
+            <div class="task-info">
+              <span class="priority">High</span>
+              <span class="due">Due 2026-11-12</span>
+              <span>Personal</span>
+            </div>
+          </div>
+          <div class="task-buttons">
+            <button class="edit-btn">Edit</button>
+            <button class="delete-btn">Delete</button>
+          </div>
+        </article>
+      -->
+      <div id="tasks" class="tasks"></div>
+
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>&copy; 2026 Abd-alrhman Fayyad | <a href="https://github.com/abd-alrhmanfayyad/ToDoApp">GitHub</a></p>
+  </footer>
+
+</body>
+
+</html>
