@@ -397,6 +397,7 @@ h2 {
   color: var(--gray);
   background-color: var(--box);
   border-top: 1px solid var(--border);
+   margin-top: auto;
 }
 
 .footer a {
