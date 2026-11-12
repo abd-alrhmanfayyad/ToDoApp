@@ -69,7 +69,7 @@ textarea {
 }
 
 textarea {
-    resize: none;
+  resize: none;
   height: auto;
 }
 
@@ -77,6 +77,7 @@ textarea {
 .btn {
   padding: 8px 16px;
   font-size: 15px;
+  white-space: nowrap; /* keep "Light mode" on one line */
   border: none;
   border-radius: 8px;
   background-color: var(--main);
@@ -92,6 +93,30 @@ textarea {
   background-color: transparent;
   color: var(--text);
   border: 1px solid var(--border);
+}
+
+/* Round button with an icon (dark mode switch) */
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Light mode shows the moon, dark mode shows the sun */
+.icon-sun {
+  display: none;
+}
+
+body.dark .icon-sun {
+  display: block;
+}
+
+body.dark .icon-moon {
+  display: none;
 }
 
 /* ===== HEADER ===== */
@@ -135,6 +160,7 @@ textarea {
   grid-template-columns: 240px 1fr;
   gap: 25px;
   align-items: start;
+  align-content: start; /* rows stay at the top, extra space goes to the bottom */
 }
 
 .sidebar,
@@ -196,6 +222,11 @@ h2 {
 
 .form-row div {
   flex: 1;
+}
+
+.new-task-btn {
+  padding: 10px 20px;
+  font-size: 16px;
 }
 
 /* ===== TOOLBAR ===== */
@@ -377,6 +408,7 @@ h2 {
   .container {
     grid-template-columns: 1fr;
     padding: 15px;
+    gap: 15px;
   }
 
   .toolbar {
@@ -396,6 +428,15 @@ h2 {
     width: 100%;
     justify-content: flex-end;
   }
+
+  .header {
+    padding: 12px 15px;
+  }
+
+  /* No room for the name on a phone: the photo is enough */
+  #user-name {
+    display: none;
+  }
 }
 .error {
   color: var(--high);
@@ -407,9 +448,38 @@ h2 {
   margin-bottom: 10px;
 }
 
+#signed-out {
+  padding: 60px 20px;
+  font-size: 18px;
+}
+/* ===== LIST RENAME / DELETE ===== */
+.lists li {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.lists .list-edit,
+.lists .list-delete {
+  width: auto;
+  padding: 6px 8px;
+  color: var(--gray);
+}
+
+.lists .list-delete:hover {
+  color: var(--high);
+}
+.lists .list-rename {
+  height: 38px;
+  margin: 1px 0;
+  outline: 2px solid var(--main);
+}
+
 /* JS adds or removes this class to show and hide things.
    It's at the END of the file on purpose: same specificity as .user-box,
    so the rule that comes later wins. */
+   
+
 .hide {
   display: none;
 }
